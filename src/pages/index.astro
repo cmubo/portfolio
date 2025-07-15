@@ -1,27 +1,33 @@
 ---
-import Welcome from "../components/Welcome.astro";
+import LargeTitle from "../components/LargeTitle.astro";
+import Intro from "../components/sections/Intro.astro";
+import Skills from "../components/sections/Skills.astro";
+import Work from "../components/sections/Work.astro";
+import StaticContent from "../components/StaticContent.astro";
 import Layout from "../layouts/Layout.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-  <Welcome />
-  <div class="flex min-h-[100svh] items-center justify-center bg-amber-700">
-    <h2 class="font-display text-center text-4xl font-bold">
-      Hello World g y p q
-    </h2>
+  <Intro />
 
-    <button>Click me</button>
-  </div>
-  <div class="flex min-h-[100svh] items-center justify-center bg-red-700">
-    <h2 class="font-neue text-center text-4xl font-bold">Hello World g</h2>
-  </div>
-  <div class="flex min-h-[100svh] items-center justify-center bg-green-700">
-    <h2 class="text-center text-4xl font-bold">Hello World y</h2>
-  </div>
-  <div class="flex min-h-[100svh] items-center justify-center bg-slate-700">
-    <h2 class="text-center text-4xl font-bold">Hello World</h2>
-  </div>
+  <LargeTitle className="about-me-title">About Me.</LargeTitle>
+  <StaticContent>
+    I’m a frontend developer from Liverpool, England. I’ve done all types of
+    work over the years but I specialise in web app development using react. I'm
+    currently looking for work, whether that be contract or full time. So if
+    youre searching for someone, my resume is in the top right corner and you
+    can email me at muberyc@gmail.com.
+  </StaticContent>
+
+  <LargeTitle className="what-i-do-title" sectionId="work"
+    >What I do.</LargeTitle
+  >
+
+  <Skills />
+  <LargeTitle className="my-work-title" sectionId="work">My work.</LargeTitle>
+  <Work />
+
+  <LargeTitle className="my-work-title" sectionId="contact"
+    >Say Hello.</LargeTitle
+  >
 </Layout>

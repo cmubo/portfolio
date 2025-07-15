@@ -1,0 +1,101 @@
+<div class="font-title logo text-4xl">
+  <span class="logo__title" data-logo-section="name" data-logo-default
+    >Callum Mubery.</span
+  >
+  <span class="logo__title" data-logo-section="profession"
+    >Frontend Developer.</span
+  >
+
+  <span class="logo__title" data-logo-section="contact">Hey There.</span>
+</div>
+
+<script>
+  setTimeout(() => {
+    const nameTitle = document.querySelector(
+      ".logo__title[data-logo-section='name']",
+    );
+    const professionTitle = document.querySelector(
+      ".logo__title[data-logo-section='profession']",
+    );
+    const contactTitle = document.querySelector(
+      ".logo__title[data-logo-section='contact']",
+    );
+    const workSectionScrollPosition =
+      document.getElementById("work")!.offsetTop;
+    const contactSectionScrollPosition =
+      document.getElementById("contact")!.offsetTop;
+
+    let activeTitle: "name" | "profession" | "contact" | null = null;
+
+    animateLogo(window.scrollY);
+
+    window.addEventListener("scroll", () => {
+      const scrollPosition = window.scrollY;
+
+      animateLogo(scrollPosition);
+    });
+
+    function animateLogo(scrollPosition: number) {
+      const scrollOffset = window.innerHeight * 0.5;
+
+      // We minus the scrollOffset so the animation happens when half of the screen section is visible
+      if (
+        scrollPosition >= workSectionScrollPosition - scrollOffset &&
+        scrollPosition < contactSectionScrollPosition - scrollOffset
+      ) {
+        if (activeTitle !== "profession") {
+          nameTitle?.classList.remove("show");
+          contactTitle?.classList.remove("show");
+
+          professionTitle?.classList.add("show");
+          activeTitle = "profession";
+        }
+      } else if (
+        scrollPosition >=
+        contactSectionScrollPosition - scrollOffset
+      ) {
+        if (activeTitle !== "contact") {
+          nameTitle?.classList.remove("show");
+          professionTitle?.classList.remove("show");
+
+          contactTitle?.classList.add("show");
+          activeTitle = "contact";
+        }
+      } else {
+        if (activeTitle !== nameTitle) {
+          contactTitle?.classList.remove("show");
+          professionTitle?.classList.remove("show");
+
+          nameTitle?.classList.add("show");
+          activeTitle = "name";
+        }
+      }
+    }
+  }, 100);
+</script>
+
+<style>
+  .logo {
+    font-family: var(--font-title);
+    font-size: clamp(24px, 5vw, 36px);
+    line-height: 1;
+    position: relative;
+    height: clamp(24px, 5vw, 36px);
+  }
+
+  .logo__title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition:
+      filter 0.3s ease,
+      opacity 0.3s ease;
+    filter: blur(20px);
+    opacity: 0;
+  }
+
+  .logo__title.show {
+    filter: blur(0px);
+    opacity: 1;
+  }
+</style>

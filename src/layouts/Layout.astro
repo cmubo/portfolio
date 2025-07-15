@@ -1,4 +1,5 @@
 ---
+import Navbar from "../components/Navbar.astro";
 import "../styles/global.css";
 ---
 
@@ -9,9 +10,11 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>Callum Mubery</title>
   </head>
-  <body>
+  <body class="bg-background">
+    <Navbar />
+
     <slot />
 
     <script>
@@ -19,6 +22,11 @@ import "../styles/global.css";
       import { gsap } from "gsap";
       import ScrollTrigger from "gsap/ScrollTrigger";
       import { SplitText } from "gsap/SplitText";
+
+      import initialiseRevealCharactersInstances from "../lib/utils/init-reveal-characters-instances";
+      import initialiseRevealWordInstances from "../lib/utils/init-reveal-word-instances";
+      import initialiseRevealChildrenInstances from "../lib/utils/init-reveal-children-instances";
+      import initLargeTitleRevealInstances from "../lib/utils/init-large-title-reveal";
 
       gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -35,6 +43,13 @@ import "../styles/global.css";
 
       // Disable lag smoothing in GSAP to prevent any delay in scroll animations
       gsap.ticker.lagSmoothing(0);
+
+      gsap.registerPlugin(ScrollTrigger, SplitText);
+
+      initLargeTitleRevealInstances();
+      initialiseRevealChildrenInstances();
+      initialiseRevealWordInstances();
+      initialiseRevealCharactersInstances();
     </script>
   </body>
 </html>

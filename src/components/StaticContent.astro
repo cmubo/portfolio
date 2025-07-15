@@ -1,0 +1,13 @@
+---
+import { containerPadding } from "../constants/classNames";
+---
+
+<section>
+  <div
+    class={`bg-background flex min-h-[100svh] items-center justify-center ${containerPadding}`}
+  >
+    <p class="lg-text mx-auto max-w-3xl text-center">
+      <slot />
+    </p>
+  </div>
+</section>

@@ -41,4 +41,59 @@
   --font-neue: "PP Neue Machina", "sans-serif";
   --font-sans: "Roboto", "sans-serif";
   --font-serif: "Times New Roman", "serif";
+
+  --color-background: #fffafa;
+}
+
+.blur-and-hide {
+  transition:
+    filter 0.3s ease,
+    opacity 0.3s ease;
+  filter: blur(20px);
+  opacity: 0;
+}
+.blurred-word {
+  transition:
+    filter 0.3s ease,
+    opacity 0.3s ease;
+  filter: blur(20px);
+  opacity: 0;
+}
+
+.blurred-item {
+  transition:
+    filter 0.3s ease,
+    opacity 0.3s ease;
+  filter: blur(20px);
+  opacity: 0;
+}
+
+.block-demo__blocks {
+  grid-template-columns: repeat(4, 1fr);
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  padding: 2rem;
+}
+
+.block-demo__block {
+  background-color: aqua;
+  width: 100%;
+  height: 200px;
+}
+
+.demo-area {
+  border: 2px dashed #141414;
+  padding: 2rem;
+  margin: 2rem;
+  border-radius: 2rem;
+}
+
+.lg-text {
+  font-size: clamp(16px, 2vw, 24px);
+}
+
+.large-title {
+  font-family: var(--font-title);
+  font-size: clamp(32px, 10.8vw, 140px);
 }

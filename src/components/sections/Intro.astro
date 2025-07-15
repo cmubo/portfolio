@@ -1,0 +1,69 @@
+---
+import { containerPadding } from "../../constants/classNames";
+---
+
+<section class="flex min-h-[100svh] items-center justify-center text-center">
+  <div class={`container mx-auto text-center ${containerPadding}`}>
+    <p class="intro-text intro-text-1">Hey There!</p>
+    <p class="intro-text intro-text-2">I'm Callum, a Frontend Developer.</p>
+  </div>
+</section>
+
+<style>
+  .intro-text {
+    font-family: var(--font-title);
+    font-size: clamp(24px, 5vw, 42px);
+  }
+
+  .intro-text > span {
+    opacity: 0;
+    filter: blur(20px);
+    transition:
+      filter 0.3s ease,
+      opacity 0.3s ease;
+  }
+</style>
+<style is:global>
+  .intro-text > span {
+    opacity: 0;
+    filter: blur(20px);
+    transition:
+      filter 0.3s ease,
+      opacity 0.3s ease;
+  }
+</style>
+<script>
+  import gsap from "gsap";
+  import { SplitText } from "gsap/SplitText";
+
+  SplitText.create(document.querySelector(".intro-text-1"), {
+    type: "chars",
+    tag: "span",
+  });
+  SplitText.create(document.querySelector(".intro-text-2"), {
+    type: "chars",
+    tag: "span",
+  });
+
+  const introTl = gsap.timeline({
+    defaults: {
+      ease: "sine.in",
+    },
+  });
+
+  introTl.to(".intro-text-1 > span", {
+    delay: 0.5,
+    opacity: 1,
+    filter: "blur(0px)",
+    duration: 0.4,
+    stagger: 0.03,
+  });
+
+  introTl.to(".intro-text-2 > span", {
+    delay: 0.5,
+    opacity: 1,
+    filter: "blur(0px)",
+    duration: 0.4,
+    stagger: 0.03,
+  });
+</script>

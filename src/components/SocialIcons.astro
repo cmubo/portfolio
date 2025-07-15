@@ -1,0 +1,70 @@
+---
+import Github from "./icons/Github.astro";
+import LinkedIn from "./icons/LinkedIn.astro";
+import Resume from "./icons/Resume.astro";
+import ArrowUpRight from "./icons/ArrowUpRight.astro";
+---
+
+<div class="social-icons">
+  <a
+    href="http://github.com/cmubo/"
+    target="_blank"
+    rel="noreferrer noopener"
+    class="social-icons__circle"
+  >
+    <Github className="h-5 w-5" />
+  </a>
+  <a
+    href="http://github.com/cmubo/"
+    target="_blank"
+    rel="noreferrer noopener"
+    class="social-icons__circle"
+  >
+    <LinkedIn className="h-5 w-5" />
+  </a>
+
+  <a
+    href="https://google.com/"
+    target="_blank"
+    rel="noreferrer noopener"
+    class="social-icons__pill"
+  >
+    <Resume className="h-5 w-5" />
+
+    <span>Resumé</span>
+
+    <ArrowUpRight className="h-3 w-3" />
+  </a>
+
+  <style>
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .social-icons__circle {
+      display: flex;
+      width: 44px;
+      height: 44px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      border: 1px solid black;
+      backdrop-filter: blur(16px);
+    }
+
+    .social-icons__pill {
+      display: flex;
+      height: 44px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 44px;
+      border: 1px solid black;
+      padding: 12px;
+      gap: 4px;
+      backdrop-filter: blur(16px);
+    }
+  </style>
+</div>
