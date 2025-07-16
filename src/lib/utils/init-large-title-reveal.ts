@@ -25,9 +25,8 @@ export default function initLargeTitleRevealInstances() {
 
     ScrollTrigger.create({
       trigger: scrollContainer,
-      start: "clamp(top top)",
-      end: "+=100%",
-      pin: true,
+      start: "top center",
+      end: "40% center",
       onUpdate: (self: { progress: number }) => {
         revealElementsWithBlur(chars, self.progress);
       },

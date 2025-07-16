@@ -43,6 +43,7 @@
   --font-serif: "Times New Roman", "serif";
 
   --color-background: #fffafa;
+  --glass-gradient: linear-gradient(45deg, #c0c0c040, #9f9f9f60);
 }
 
 .blur-and-hide {
@@ -96,4 +97,20 @@
 .large-title {
   font-family: var(--font-title);
   font-size: clamp(32px, 10.8vw, 140px);
+}
+
+.contact-section {
+  transition: 0.3s;
+}
+
+.contact-section:has(.contact-title__link:hover) {
+  background: black;
+}
+
+.contact-title__link {
+  transition: 0.3s;
+  padding: 32px;
+}
+.contact-title__link:hover {
+  color: #fff;
 }

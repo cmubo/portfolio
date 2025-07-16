@@ -6,72 +6,46 @@
     >Frontend Developer.</span
   >
 
-  <span class="logo__title" data-logo-section="contact">Hey There.</span>
+  <span class="logo__title" data-logo-section="contact">Hey.</span>
 </div>
 
 <script>
-  setTimeout(() => {
-    const nameTitle = document.querySelector(
-      ".logo__title[data-logo-section='name']",
-    );
-    const professionTitle = document.querySelector(
+  const allTitles = document.querySelectorAll(".logo__title");
+  const titles = {
+    name: document.querySelector(".logo__title[data-logo-section='name']"),
+    profession: document.querySelector(
       ".logo__title[data-logo-section='profession']",
-    );
-    const contactTitle = document.querySelector(
+    ),
+    contact: document.querySelector(
       ".logo__title[data-logo-section='contact']",
-    );
-    const workSectionScrollPosition =
-      document.getElementById("work")!.offsetTop;
-    const contactSectionScrollPosition =
-      document.getElementById("contact")!.offsetTop;
+    ),
+  };
 
-    let activeTitle: "name" | "profession" | "contact" | null = null;
+  let activeTitle: "name" | "profession" | "contact" | null = null;
+  type ActiveTitle = "name" | "profession" | "contact";
 
-    animateLogo(window.scrollY);
+  function animateTitle(name: ActiveTitle) {
+    if (activeTitle !== name) {
+      allTitles.forEach((title) => {
+        title.classList.remove("show");
+      });
 
-    window.addEventListener("scroll", () => {
-      const scrollPosition = window.scrollY;
-
-      animateLogo(scrollPosition);
-    });
-
-    function animateLogo(scrollPosition: number) {
-      const scrollOffset = window.innerHeight * 0.5;
-
-      // We minus the scrollOffset so the animation happens when half of the screen section is visible
-      if (
-        scrollPosition >= workSectionScrollPosition - scrollOffset &&
-        scrollPosition < contactSectionScrollPosition - scrollOffset
-      ) {
-        if (activeTitle !== "profession") {
-          nameTitle?.classList.remove("show");
-          contactTitle?.classList.remove("show");
-
-          professionTitle?.classList.add("show");
-          activeTitle = "profession";
-        }
-      } else if (
-        scrollPosition >=
-        contactSectionScrollPosition - scrollOffset
-      ) {
-        if (activeTitle !== "contact") {
-          nameTitle?.classList.remove("show");
-          professionTitle?.classList.remove("show");
-
-          contactTitle?.classList.add("show");
-          activeTitle = "contact";
-        }
-      } else {
-        if (activeTitle !== nameTitle) {
-          contactTitle?.classList.remove("show");
-          professionTitle?.classList.remove("show");
-
-          nameTitle?.classList.add("show");
-          activeTitle = "name";
-        }
-      }
+      titles[name]?.classList.add("show");
+      activeTitle = name;
     }
-  }, 100);
+  }
+
+  window.addEventListener("scroll::work", () => {
+    animateTitle("profession");
+  });
+
+  window.addEventListener("scroll::contact", () => {
+    animateTitle("contact");
+  });
+
+  window.addEventListener("scroll::about", () => {
+    animateTitle("name");
+  });
 </script>
 
 <style>

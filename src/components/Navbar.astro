@@ -1,15 +1,123 @@
----
-import SocialIcons from "./SocialIcons.astro";
-import Logo from "./Logo.astro";
----
-
-<div class="fixed top-0 left-0 z-40 w-full">
-  <div
-    class="container mx-auto flex items-center justify-between gap-4 px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8"
-  >
-    <div class="flex-1">
-      <Logo />
-    </div>
-    <div class="flex-shrink-0"><SocialIcons /></div>
+<div
+  class="navbar about-active fixed bottom-4 left-1/2 z-40 -translate-x-1/2 overflow-hidden"
+>
+  <div class="relative h-full w-full">
+    <span class="nav-underlay absolute h-full bg-black"></span>
+    <nav class="relative flex items-center">
+      <button type="button" class="nav-item active" data-nav-section="about"
+        >About</button
+      >
+      <button type="button" class="nav-item" data-nav-section="work"
+        >Work</button
+      >
+      <button type="button" class="nav-item" data-nav-section="contact"
+        >Contact</button
+      >
+    </nav>
   </div>
 </div>
+
+<style>
+  .navbar {
+    border-radius: 20px;
+    backdrop-filter: blur(16px);
+    background: var(--glass-gradient);
+    --about-width: 110px;
+    --work-width: 110px;
+    --contact-width: 110px;
+  }
+
+  .nav-item {
+    padding: 10px 20px;
+    transition: 0.5s;
+    width: 110px;
+    cursor: pointer;
+  }
+
+  .nav-item.active {
+    color: #fff;
+  }
+
+  .nav-underlay {
+    width: 100px;
+    border-radius: 20px;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+  }
+
+  .navbar.about-active {
+    .nav-underlay {
+      transform: translateX(0px);
+      width: var(--about-width);
+    }
+  }
+
+  .navbar.work-active {
+    .nav-underlay {
+      transform: translateX(var(--about-width));
+      width: var(--work-width);
+    }
+  }
+
+  .navbar.contact-active {
+    .nav-underlay {
+      transform: translateX(calc(var(--about-width) + var(--work-width)));
+      width: var(--contact-width);
+    }
+  }
+</style>
+
+<script>
+  const navbar = document.querySelector(".navbar")!;
+  const allNavItems = document.querySelectorAll(".nav-item");
+  const navItems = {
+    about: document.querySelector(".nav-item[data-nav-section='about']"),
+    work: document.querySelector(".nav-item[data-nav-section='work']"),
+    contact: document.querySelector(".nav-item[data-nav-section='contact']"),
+  };
+  type NavItems = keyof typeof navItems;
+
+  const scrollPositions = {
+    about: document.getElementById("about")!.offsetTop,
+    work: document.getElementById("work")!.offsetTop,
+    contact: document.getElementById("contact")!.offsetTop,
+  };
+
+  type ScrollPositions = keyof typeof scrollPositions;
+
+  allNavItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      allNavItems.forEach((navItem) => {
+        navItem.classList.remove("active");
+      });
+      item.classList.add("active");
+
+      const sectionId = item.getAttribute("data-nav-section");
+
+      window.lenis.scrollTo(scrollPositions[sectionId as ScrollPositions]);
+    });
+  });
+
+  function animateNav(name: NavItems) {
+    navbar.classList.remove("about-active", "work-active", "contact-active");
+    navbar.classList.add(name + "-active");
+
+    allNavItems.forEach((navItem) => {
+      navItem.classList.remove("active");
+    });
+    navItems[name]?.classList.add("active");
+  }
+
+  window.addEventListener("scroll::contact", () => {
+    animateNav("contact");
+  });
+
+  window.addEventListener("scroll::work", () => {
+    animateNav("work");
+  });
+
+  window.addEventListener("scroll::about", () => {
+    animateNav("about");
+  });
+</script>

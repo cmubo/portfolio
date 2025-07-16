@@ -1,5 +1,6 @@
 ---
 import LargeTitle from "../components/LargeTitle.astro";
+import Contact from "../components/sections/contact.astro";
 import Intro from "../components/sections/Intro.astro";
 import Skills from "../components/sections/Skills.astro";
 import Work from "../components/sections/Work.astro";
@@ -10,7 +11,8 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
   <Intro />
 
-  <LargeTitle className="about-me-title">About Me.</LargeTitle>
+  <LargeTitle className="about-me-title" sectionId="about">About Me.</LargeTitle
+  >
   <StaticContent>
     I’m a frontend developer from Liverpool, England. I’ve done all types of
     work over the years but I specialise in web app development using react. I'm
@@ -19,7 +21,7 @@ import Layout from "../layouts/Layout.astro";
     can email me at muberyc@gmail.com.
   </StaticContent>
 
-  <LargeTitle className="what-i-do-title" sectionId="work"
+  <LargeTitle className="what-i-do-title" sectionId="skills"
     >What I do.</LargeTitle
   >
 
@@ -27,7 +29,12 @@ import Layout from "../layouts/Layout.astro";
   <LargeTitle className="my-work-title" sectionId="work">My work.</LargeTitle>
   <Work />
 
-  <LargeTitle className="my-work-title" sectionId="contact"
-    >Say Hello.</LargeTitle
+  <LargeTitle
+    className="contact-title"
+    sectionId="contact"
+    containerClassName="contact-section"
+    ><a class="contact-title__link" href="mailto: muberyc@gmail.com"
+      >Say Hello.</a
+    ></LargeTitle
   >
 </Layout>
