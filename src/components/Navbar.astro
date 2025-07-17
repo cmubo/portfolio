@@ -1,5 +1,5 @@
 <div
-  class="navbar about-active fixed bottom-4 left-1/2 z-40 -translate-x-1/2 overflow-hidden"
+  class="navbar about-active fixed bottom-4 left-1/2 z-10 -translate-x-1/2 overflow-hidden"
 >
   <div class="relative h-full w-full">
     <span class="nav-underlay absolute h-full bg-black"></span>
@@ -71,6 +71,8 @@
 <script>
   const navbar = document.querySelector(".navbar")!;
   const allNavItems = document.querySelectorAll(".nav-item");
+  let activeNav: "about" | "work" | "contact" | null = null;
+
   const navItems = {
     about: document.querySelector(".nav-item[data-nav-section='about']"),
     work: document.querySelector(".nav-item[data-nav-section='work']"),
@@ -107,17 +109,25 @@
       navItem.classList.remove("active");
     });
     navItems[name]?.classList.add("active");
+
+    activeNav = name;
   }
 
   window.addEventListener("scroll::contact", () => {
-    animateNav("contact");
+    if (activeNav !== "contact") {
+      animateNav("contact");
+    }
   });
 
   window.addEventListener("scroll::work", () => {
-    animateNav("work");
+    if (activeNav !== "work") {
+      animateNav("work");
+    }
   });
 
   window.addEventListener("scroll::about", () => {
-    animateNav("about");
+    if (activeNav !== "about") {
+      animateNav("about");
+    }
   });
 </script>

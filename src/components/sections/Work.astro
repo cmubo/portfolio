@@ -1,30 +1,38 @@
 ---
 import { containerPadding } from "../../constants/classNames";
-import tenatBG from "../../assets/images/tenat/tenat.png";
-import workpalBg from "../../assets/images/workpal/screen-1.png";
-import goodshipBg from "../../assets/images/goodship/goodship-bg-yellow.jpg";
+import tenatSVG from "../../assets/images/tenat/tenat-logo.svg";
+
+import workpalSVG from "../../assets/images/workpal/workpal-logo.svg";
+import goodshipSVG from "../../assets/images/goodship/goodship-logo.svg";
+import { Image } from "astro:assets";
 
 const workItems = [
   {
+    modalId: "tenat",
     title: "Tenat.",
     tags: ["Symfony", "Typescript", "Stimulus", "Turbo"],
     description:
       "A fully-integrated tenancy management system designed to transform lettings, real estate and property management. I led the complete frontend build and much of the ux design for this project. The project was built in symfony, the frontend was mainly comprised of custom built components.",
-    bgImage: tenatBG,
+    bgColour: "#E7266A",
+    logo: tenatSVG,
   },
   {
+    modalId: "workpal",
     title: "Workpal.",
     tags: ["React", "Capacitor", "Mobile App", "Jest", "Cypress"],
     description:
       "Workforce management and staff wellbeing online portal and mobile application. I led the development and management of the project, working closely with another frontend developer. My responsibilities included direct communication with the client, coordination with their internal team, and collaboration with an offshore backend team. ",
-    bgImage: workpalBg,
+    bgColour: "#F9F9FC",
+    logo: workpalSVG,
   },
   {
+    modalId: "goodship",
     title: "Goodship.",
     tags: ["Webflow"],
     description:
       "GoodShip* is a collaboration agency that offers comprehensive support for our clients and partners. I worked along side Gavin at goodship to build out the site within webflow and also assisted with the design.",
-    bgImage: goodshipBg,
+    bgColour: "#FCF2E7",
+    logo: goodshipSVG,
   },
 ];
 ---
@@ -35,10 +43,15 @@ const workItems = [
       workItems.map((item) => (
         <div class="grid w-full grid-cols-12 items-center gap-4 rounded-2xl border border-dashed p-6 sm:gap-8">
           <div
-            class="work__image-container work__bg-tenat relative col-span-12 aspect-square rounded-2xl bg-red-500 bg-cover bg-center sm:col-span-4"
-            style={`background-image: url(${item.bgImage.src});`}
+            class="work__image-container work__bg-tenat relative col-span-12 flex aspect-square items-center justify-center rounded-2xl bg-cover bg-center p-4 sm:col-span-4"
+            style={`background-color: ${item.bgColour};`}
           >
-            <button type="button" class="view-more-button">
+            <Image
+              src={item.logo}
+              alt={`${item.title} logo.}`}
+              class="w-full max-w-[200px]"
+            />
+            <button type="button" class="view-more-images-button">
               <span>View</span>{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
