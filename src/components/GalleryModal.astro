@@ -1,0 +1,151 @@
+---
+import ArrowLongLeft from "../components/icons/ArrowLongLeft.astro";
+import { containerPadding } from "../constants/classNames";
+
+const { id } = Astro.props;
+---
+
+<gallery-modal
+  id={id}
+  class="gallery-modal bg-background fixed top-0 left-0 z-20 hidden h-full w-full"
+>
+  <div
+    class="gallery-modal__content relative h-full w-full overflow-y-scroll"
+    data-lenis-prevent="true"
+  >
+    <div class={`container mx-auto ${containerPadding}`}>
+      <div class="mb-4">
+        <button
+          type="button"
+          class="js-gallery-modal-close gallery-modal__close-button cursor-pointer p-4"
+          data-modal-id={id}><ArrowLongLeft className="h-16 w-16" /></button
+        >
+      </div>
+
+      <div
+        class="mx-auto grid grid-cols-1 flex-col items-center justify-center gap-8 sm:grid-cols-2"
+      >
+        <slot />
+      </div>
+    </div>
+  </div>
+</gallery-modal>
+
+<style>
+  .work-gallery__image {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .btn {
+    padding: 8px;
+    border: 1px solid black;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    backdrop-filter: blur(16px);
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+
+  class GalleryModal extends HTMLElement {
+    modalId: string = this.id;
+    tl: gsap.core.Timeline | null = null;
+    content: HTMLElement | null = null;
+
+    constructor() {
+      super();
+
+      this.onOpen = this.onOpen.bind(this);
+      this.onClose = this.onClose.bind(this);
+      this.closeOnEscapeKey = this.closeOnEscapeKey.bind(this);
+    }
+
+    connectedCallback() {
+      this.content = this.querySelector(".gallery-modal__content");
+
+      this.buildTimeline();
+      this.attachListeners();
+    }
+
+    buildTimeline() {
+      const tl = gsap.timeline({
+        paused: true,
+        onStart: () => {
+          this.classList.remove("hidden");
+        },
+        onReverseComplete: () => {
+          this.classList.add("hidden");
+        },
+      });
+
+      tl.to(this, {
+        duration: 0.2,
+        opacity: 1,
+      })
+        .to(this.querySelector(".gallery-modal__close-button"), {
+          "--blur": 0,
+          opacity: 1,
+          duration: 0.5,
+        })
+        .to(
+          this.querySelectorAll("img"),
+          {
+            "--blur": 0,
+            opacity: 1,
+            stagger: 0.15,
+            duration: 0.3,
+          },
+          "<",
+        );
+
+      this.tl = tl;
+    }
+
+    onOpen(e: CustomEvent) {
+      if (e.detail.id !== this.modalId) {
+        return;
+      }
+
+      window.lenis.stop();
+
+      this.tl!.play();
+    }
+
+    onClose(e: CustomEvent) {
+      if (e.detail.id !== this.modalId) {
+        return;
+      }
+
+      this.tl!.reverse();
+
+      window.lenis.start();
+    }
+
+    closeOnEscapeKey(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        this.onClose({ detail: { id: this.modalId } } as CustomEvent);
+      }
+    }
+
+    attachListeners() {
+      // @ts-ignore
+      window.addEventListener("gallery-modal::open", this.onOpen);
+      // @ts-ignore
+      window.addEventListener("gallery-modal::close", this.onClose);
+      window.addEventListener("keyup", this.closeOnEscapeKey);
+    }
+
+    disconnectedCallback() {
+      // @ts-ignore
+      window.removeEventListener("gallery-modal::open", this.onOpen);
+      // @ts-ignore
+      window.removeEventListener("gallery-modal::close", this.onClose);
+      window.removeEventListener("keyup", this.closeOnEscapeKey);
+    }
+  }
+
+  customElements.define("gallery-modal", GalleryModal);
+</script>

@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+import GalleryModal from "../GalleryModal.astro";
+import tenatImages from "../images/tenat";
+import workpalImages from "../images/workpal";
+---
+
+<div>
+  <GalleryModal id="tenat">
+    {
+      tenatImages.map((image) => (
+        <Image src={image.image} alt={image.alt} class="work-gallery__image" />
+      ))
+    }
+  </GalleryModal>
+  <GalleryModal id="workpal">
+    {
+      workpalImages.map((image) => (
+        <Image src={image.image} alt={image.alt} class="work-gallery__image" />
+      ))
+    }
+  </GalleryModal>
+</div>

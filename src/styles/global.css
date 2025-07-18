@@ -43,7 +43,7 @@
   --font-serif: "Times New Roman", "serif";
 
   --color-background: #fffafa;
-  --glass-gradient: linear-gradient(45deg, #c0c0c040, #9f9f9f60);
+  --glass-gradient: #c0c0c030;
 }
 
 .blur-and-hide {
@@ -113,4 +113,16 @@
 }
 .contact-title__link:hover {
   color: #fff;
+}
+
+/* Gallery Modal */
+.gallery-modal {
+  opacity: 0;
+}
+
+.work-gallery__image,
+.gallery-modal__close-button {
+  --blur: 16px;
+  filter: blur(var(--blur));
+  opacity: 0;
 }
