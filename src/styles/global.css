@@ -99,6 +99,41 @@
   font-size: clamp(32px, 10.8vw, 140px);
 }
 
+.link-hover {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  transition: 0.3s;
+}
+
+.link-hover > span {
+  position: relative;
+}
+
+.link-hover:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  background-color: #000;
+  transform: translateY(100%);
+  transition: transform 0.15s ease-in-out;
+}
+
+.link-hover:hover:before {
+  transform: translateY(0);
+}
+
+.link-hover:hover {
+  color: #fff;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+/* Contact section */
 .contact-section {
   transition: 0.3s;
 }
