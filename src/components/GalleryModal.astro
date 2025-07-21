@@ -55,6 +55,7 @@ const { id } = Astro.props;
     modalId: string = this.id;
     tl: gsap.core.Timeline | null = null;
     content: HTMLElement | null = null;
+    elementThatTriggeredModal: HTMLElement | null = null;
 
     constructor() {
       super();
@@ -112,7 +113,12 @@ const { id } = Astro.props;
 
       window.lenis.stop();
 
+      this.elementThatTriggeredModal = e.detail.element;
       this.tl!.play();
+
+      setTimeout(() => {
+        this.querySelector("button")!.focus();
+      }, 0);
     }
 
     onClose(e: CustomEvent) {
@@ -123,6 +129,8 @@ const { id } = Astro.props;
       this.tl!.reverse();
 
       window.lenis.start();
+
+      this.elementThatTriggeredModal && this.elementThatTriggeredModal.focus();
     }
 
     closeOnEscapeKey(e: KeyboardEvent) {

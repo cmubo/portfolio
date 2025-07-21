@@ -52,7 +52,7 @@ const workItems = [
           >
             <Image
               src={item.logo}
-              alt={`${item.title} logo.}`}
+              alt={`${item.title.split(".")[0]} logo.`}
               class="w-full max-w-[200px]"
             />
             {item.hasImageGallery ? (
@@ -89,7 +89,7 @@ const workItems = [
                     href={item.link}
                     target="_blank"
                     rel="noreferrer"
-                    class="px-4"
+                    class="px-4 transition-transform hover:-translate-y-1"
                   >
                     <ArrowUpRight className="size-8" />
                   </a>
@@ -152,6 +152,7 @@ const workItems = [
           new CustomEvent("gallery-modal::open", {
             detail: {
               id: button.dataset.modalId,
+              element: button,
             },
           }),
         );
@@ -166,6 +167,7 @@ const workItems = [
           new CustomEvent("gallery-modal::close", {
             detail: {
               id: button.dataset.modalId,
+              element: button,
             },
           }),
         );
