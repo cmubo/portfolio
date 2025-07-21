@@ -11,7 +11,8 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
   <Intro />
 
-  <LargeTitle className="about-me-title" sectionId="about">About Me.</LargeTitle
+  <LargeTitle className="about-me-title highlight-last-child" sectionId="about"
+    >About Me.</LargeTitle
   >
   <StaticContent>
     I’m a frontend developer from Liverpool, England. I’ve done all types of
@@ -22,23 +23,27 @@ import Layout from "../layouts/Layout.astro";
       href="mailto: muberyc@gmail.com"
       class="link-mask underline"
       data-content="muberyc@gmail.com"><span>muberyc@gmail.com</span></a
-    >.
+    ><span class="highlight">.</span>
   </StaticContent>
 
-  <LargeTitle className="what-i-do-title" sectionId="skills"
-    >What I do.</LargeTitle
+  <LargeTitle
+    className="what-i-do-title highlight-last-child"
+    sectionId="skills">What I do.</LargeTitle
   >
 
   <Skills />
-  <LargeTitle className="my-work-title" sectionId="work">My work.</LargeTitle>
+  <LargeTitle className="my-work-title highlight-last-child" sectionId="work"
+    >My work.</LargeTitle
+  >
   <Work />
 
   <LargeTitle
     className="contact-title"
     sectionId="contact"
     containerClassName="contact-section"
-    ><a class="contact-title__link" href="mailto: muberyc@gmail.com"
-      >Say Hello.</a
+    ><a
+      class="contact-title__link highlight-last-child"
+      href="mailto: muberyc@gmail.com">Say Hello.</a
     ></LargeTitle
   >
 

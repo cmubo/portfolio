@@ -47,6 +47,14 @@
   --glass-gradient: #c0c0c030;
 }
 
+.highlight {
+  color: var(--color-highlight);
+}
+
+.highlight-last-child > *:last-child {
+  color: var(--color-highlight);
+}
+
 .blur-and-hide {
   transition:
     filter 0.3s ease,
@@ -111,7 +119,7 @@
 
 .link-mask:hover {
   color: #fff;
-  transition: 0.6s steps(1, jump-end);
+  transition: 0.5s steps(1, jump-end);
 }
 
 .link-mask:after {
@@ -124,8 +132,8 @@
   color: var(--color-highlight);
   clip-path: inset(0 100% 0 0);
   transition:
-    clip-path 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
-    -webkit-clip-path 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    clip-path 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+    -webkit-clip-path 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   transform-origin: left center;
 }
 
