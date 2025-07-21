@@ -104,7 +104,6 @@
 }
 
 .large-title {
-  font-family: var(--font-title);
   font-size: clamp(32px, 10.8vw, 140px);
 }
 
@@ -162,6 +161,13 @@
   color: #fff;
 }
 
+body:has(.contact-title__link:hover) {
+  .navbar,
+  .logo,
+  .social-icons {
+    opacity: 0;
+  }
+}
 /* Gallery Modal */
 .gallery-modal {
   opacity: 0;
