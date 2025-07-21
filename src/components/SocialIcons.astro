@@ -10,30 +10,44 @@ import ArrowUpRight from "./icons/ArrowUpRight.astro";
     href="http://github.com/cmubo/"
     target="_blank"
     rel="noreferrer noopener"
-    class="social-icons__circle"
+    class="social-icons__circle social-icon-mask"
   >
-    <Github className="h-5 w-5" />
+    <Github className="size-5" />
+
+    <span class="social-icons-mask__inner"><Github className="size-5" /></span>
   </a>
   <a
     href="http://github.com/cmubo/"
     target="_blank"
     rel="noreferrer noopener"
-    class="social-icons__circle"
+    class="social-icons__circle social-icon-mask"
   >
-    <LinkedIn className="h-5 w-5" />
+    <LinkedIn className="size-5" />
+
+    <span class="social-icons-mask__inner">
+      <LinkedIn className="size-5" /></span
+    >
   </a>
 
   <a
     href="https://drive.google.com/file/d/1sl_ARowKuFMY4q3B74punn38WNSin6wl/view"
     target="_blank"
     rel="noreferrer noopener"
-    class="social-icons__pill"
+    class="social-icons__pill social-icon-mask"
   >
-    <Resume className="h-5 w-5" />
+    <Resume className="size-5" />
 
     <span>Resumé</span>
 
     <ArrowUpRight className="h-3 w-3" />
+
+    <span class="social-icons-mask__inner">
+      <Resume className="size-5" />
+
+      <span>Resumé</span>
+
+      <ArrowUpRight className="h-3 w-3" />
+    </span>
   </a>
 
   <style>
@@ -65,6 +79,53 @@ import ArrowUpRight from "./icons/ArrowUpRight.astro";
       padding: 12px;
       gap: 4px;
       backdrop-filter: blur(16px);
+    }
+
+    .social-icon-mask {
+      position: relative;
+      overflow: hidden;
+      transition: none;
+    }
+
+    /* Without this we get ghosting/subpixel rendering differences in the background so it looks like text has a border */
+    .social-icon-mask:hover {
+      color: #fff;
+      transition: 0.5s;
+    }
+
+    .social-icons-mask__inner {
+      display: flex;
+      width: 44px;
+      height: 44px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      border: 1px solid var(--color-highlight);
+      top: -1px; /* Needed as border isnt taken into account */
+      left: -1px;
+      position: absolute;
+
+      color: var(--color-highlight);
+      clip-path: inset(0 100% 0 0);
+      transition:
+        clip-path 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+        -webkit-clip-path 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transform-origin: left center;
+    }
+
+    .social-icon-mask:hover .social-icons-mask__inner {
+      clip-path: inset(0);
+    }
+
+    .social-icons__pill.social-icon-mask > .social-icons-mask__inner {
+      width: auto;
+      border-radius: 44px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 44px;
+      border: 1px solid black;
+      padding: 12px;
+      gap: 4px;
     }
   </style>
 </div>

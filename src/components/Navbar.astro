@@ -4,14 +4,36 @@
   <div class="relative h-full w-full">
     <span class="nav-underlay absolute h-full bg-black"></span>
     <nav class="relative flex items-center">
-      <button type="button" class="nav-item active" data-nav-section="about"
-        >About</button
+      <button
+        type="button"
+        class="nav-item active"
+        data-nav-section="about"
+        aria-label="about"
       >
-      <button type="button" class="nav-item" data-nav-section="work"
-        >Work</button
+        <!-- prettier-ignore-start -->
+        <span>A</span><span>b</span><span>o</span><span>u</span><span>t</span>
+        <!-- prettier-ignore-end -->
+      </button>
+      <button
+        type="button"
+        class="nav-item"
+        data-nav-section="work"
+        aria-label="work"
       >
-      <button type="button" class="nav-item" data-nav-section="contact"
-        >Contact</button
+        <!-- prettier-ignore-start -->
+        <span>W</span><span>o</span><span>r</span><span>k</span>
+        <!-- prettier-ignore-start --></button
+      >
+      <button
+        type="button"
+        class="nav-item"
+        data-nav-section="contact"
+        aria-label="contact"
+      >
+        <!-- prettier-ignore-start -->
+        <span>C</span><span>o</span><span>n</span><span>t</span><span>a</span
+        ><span>c</span><span>t</span>
+        <!-- prettier-ignore-start --></button
       >
     </nav>
   </div>
@@ -36,6 +58,51 @@
 
   .nav-item.active {
     color: #fff;
+  }
+
+  .nav-item > span {
+    display: inline-block;
+  }
+
+  @keyframes hop {
+    0% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-3px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .nav-item > span:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .nav-item > span:nth-child(2) {
+    animation-delay: 0.05s;
+  }
+  .nav-item > span:nth-child(3) {
+    animation-delay: 0.1s;
+  }
+  .nav-item > span:nth-child(4) {
+    animation-delay: 0.15s;
+  }
+  .nav-item > span:nth-child(5) {
+    animation-delay: 0.2s;
+  }
+  .nav-item > span:nth-child(6) {
+    animation-delay: 0.25s;
+  }
+  .nav-item > span:nth-child(7) {
+    animation-delay: 0.3s;
+  }
+
+  .nav-item:hover > span {
+    animation-name: hop;
+    animation-duration: 0.3s;
   }
 
   .nav-underlay {
