@@ -43,6 +43,7 @@
   --font-serif: "Times New Roman", "serif";
 
   --color-background: #fffafa;
+  --color-highlight: #14e2d7;
   --glass-gradient: #c0c0c030;
 }
 
@@ -99,38 +100,41 @@
   font-size: clamp(32px, 10.8vw, 140px);
 }
 
-.link-hover {
+.link-mask {
   position: relative;
   overflow: hidden;
   display: inline-block;
   vertical-align: bottom;
-  transition: 0.3s;
+  transition: 0s steps(1, jump-end);
+  transition: none;
 }
 
-.link-hover > span {
-  position: relative;
+.link-mask:hover {
+  color: #fff;
+  transition: 0.6s steps(1, jump-end);
 }
 
-.link-hover:before {
-  content: "";
+.link-mask:after {
+  content: attr(data-content);
   position: absolute;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  left: 0;
-  background-color: #000;
-  transform: translateY(100%);
-  transition: transform 0.15s ease-in-out;
+  color: var(--color-highlight);
+  clip-path: inset(0 100% 0 0);
+  transition:
+    clip-path 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
+    -webkit-clip-path 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform-origin: left center;
 }
 
-.link-hover:hover:before {
-  transform: translateY(0);
+.link-mask:hover:after {
+  clip-path: inset(0);
 }
 
-.link-hover:hover {
-  color: #fff;
-  padding-left: 3px;
-  padding-right: 3px;
+.link-mask.underline:after {
+  text-decoration: underline;
 }
 
 /* Contact section */
