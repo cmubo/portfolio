@@ -18,12 +18,13 @@ const { id } = Astro.props;
         <button
           type="button"
           class="js-gallery-modal-close gallery-modal__close-button cursor-pointer p-4"
-          data-modal-id={id}><ArrowLongLeft className="h-16 w-16" /></button
+          data-modal-id={id}
+          ><ArrowLongLeft className="size-12 sm:size-16" /></button
         >
       </div>
 
       <div
-        class="mx-auto grid grid-cols-1 flex-col items-center justify-center gap-8 sm:grid-cols-2"
+        class="mx-auto grid grid-cols-1 flex-col items-center justify-center gap-4 sm:grid-cols-2 sm:gap-8"
       >
         <slot />
       </div>

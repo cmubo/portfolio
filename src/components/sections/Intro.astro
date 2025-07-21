@@ -3,7 +3,9 @@ import { containerPadding } from "../../constants/classNames";
 ---
 
 <section class="flex min-h-[100svh] items-center justify-center text-center">
-  <div class={`container mx-auto text-center ${containerPadding}`}>
+  <div
+    class={`container mx-auto text-center ${containerPadding} opacity-0 intro-container`}
+  >
     <p class="intro-text intro-text-1">Hey There!</p>
     <p class="intro-text intro-text-2">I'm Callum, a Frontend Developer.</p>
   </div>
@@ -48,6 +50,9 @@ import { containerPadding } from "../../constants/classNames";
   const introTl = gsap.timeline({
     defaults: {
       ease: "sine.in",
+    },
+    onStart: () => {
+      document.querySelector(".intro-container")!.classList.remove("opacity-0");
     },
   });
 
