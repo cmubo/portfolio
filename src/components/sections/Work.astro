@@ -12,7 +12,7 @@ const workItems = [
     title: "Tenat",
     tags: ["Symfony", "Typescript", "Stimulus", "Turbo"],
     description:
-      "A fully-integrated tenancy management system designed to transform lettings, real estate and property management. I led the complete frontend build and much of the ux design for this project. The project was built in symfony, the frontend was mainly comprised of custom built components.",
+      "Tenat was a project aimed at transforming lettings, real estate, and property management into a seamless, integrated system. I led the complete frontend build and much of the UX design, utilizing Symfony and primarily crafting custom components. Regrettably, the project was not fully launched.",
     bgColour: "#E7266A",
     logo: tenatSVG,
     hasImageGallery: true,
@@ -22,7 +22,7 @@ const workItems = [
     title: "Workpal",
     tags: ["React", "Capacitor", "Mobile App", "Jest", "Cypress"],
     description:
-      "Workforce management and staff wellbeing online portal and mobile application. I led the development and management of the project, working closely with another frontend developer. My responsibilities included direct communication with the client, coordination with their internal team, and collaboration with a separate external backend team. ",
+      "This large-scale workforce management and staff wellbeing system was split into three key components: an online portal, a comprehensive admin system, and a mobile application. I led the frontend development for the entire project and played a major role in its overall management. While I partnered with another frontend developer for specific phases, my responsibilities consistently included direct client communication, coordinating with their internal team, and seamlessly collaborating with a separate external backend team.",
     bgColour: "#F9F9FC",
     logo: workpalSVG,
     hasImageGallery: true,
@@ -52,7 +52,8 @@ const workItems = [
           >
             <Image
               src={item.logo}
-              alt={`${item.title} logo.`}
+              alt={`${item.title} logo`}
+              role="presentation"
               class="w-full max-w-[200px]"
             />
             {item.hasImageGallery ? (
