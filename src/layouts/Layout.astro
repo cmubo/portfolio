@@ -80,58 +80,53 @@ import "../styles/global.css";
 
       <Navbar />
 
-      <script>
-        import Lenis from "lenis";
-        import { gsap } from "gsap";
-        import ScrollTrigger from "gsap/ScrollTrigger";
-        import { SplitText } from "gsap/SplitText";
-
-        import initialiseRevealCharactersInstances from "../lib/utils/init-reveal-characters-instances";
-        import initialiseRevealWordInstances from "../lib/utils/init-reveal-word-instances";
-        import initialiseRevealChildrenInstances from "../lib/utils/init-reveal-children-instances";
-        import initLargeTitleRevealInstances from "../lib/utils/init-large-title-reveal";
-        import initScrollEvents from "../lib/utils/scroll-events";
-
-        gsap.registerPlugin(ScrollTrigger, SplitText);
-
-        const lenis = new Lenis();
-        window.lenis = lenis;
-
-        // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
-        lenis.on("scroll", ScrollTrigger.update);
-
-        // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
-        // This ensures Lenis's smooth scroll animation updates on each GSAP tick
-        gsap.ticker.add((time) => {
-          lenis.raf(time * 1000); // Convert time from seconds to milliseconds
-        });
-
-        // Disable lag smoothing in GSAP to prevent any delay in scroll animations
-        gsap.ticker.lagSmoothing(0);
-
-        initScrollEvents();
-        initLargeTitleRevealInstances();
-        initialiseRevealChildrenInstances();
-        initialiseRevealWordInstances();
-        initialiseRevealCharactersInstances();
-      </script>
+      <div class="cursor js-cursor">
+        <div class="cursor__circle send-email-circle">SEND EMAIL</div>
+      </div>
     </body>
   </>
-
-  <style>
-    html,
-    body {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-    }
-  </style>
 
   <script>
     console.log(
       "%c Hi! \u{1F44B} If you really wanna dig into this site, I've left the code public for anyone to see here: https://github.com/cmubo/portfolio",
       "color: #14e2d7",
     );
+
+    import Lenis from "lenis";
+    import { gsap } from "gsap";
+    import ScrollTrigger from "gsap/ScrollTrigger";
+    import { SplitText } from "gsap/SplitText";
+
+    import initRevealCharactersInstances from "../lib/utils/init-reveal-characters-instances";
+    import initRevealWordInstances from "../lib/utils/init-reveal-word-instances";
+    import initRevealChildrenInstances from "../lib/utils/init-reveal-children-instances";
+    import initLargeTitleRevealInstances from "../lib/utils/init-large-title-reveal";
+    import initScrollEvents from "../lib/utils/scroll-events";
+    import initCursor from "../lib/utils/cursor";
+
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+
+    const lenis = new Lenis();
+    window.lenis = lenis;
+
+    // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
+    lenis.on("scroll", ScrollTrigger.update);
+
+    // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+    // This ensures Lenis's smooth scroll animation updates on each GSAP tick
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+    });
+
+    // Disable lag smoothing in GSAP to prevent any delay in scroll animations
+    gsap.ticker.lagSmoothing(0);
+
+    initScrollEvents();
+    initLargeTitleRevealInstances();
+    initRevealChildrenInstances();
+    initRevealWordInstances();
+    initRevealCharactersInstances();
+    initCursor();
   </script>
 
 </html>
