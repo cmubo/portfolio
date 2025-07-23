@@ -1,14 +1,23 @@
 export default function initCursor() {
   const contactLink = document.querySelector(".contact-title__link");
   let isHovering = false;
+
+  // Handles sizes of the cursor
   let cursorSize = 0;
   let maxCursorSize = 150;
   let minCursorSize = 0;
   let growthRate = 9;
 
-  document.addEventListener("mousemove", (e) => {
-    document.body.style.setProperty("--mouseX", `${e.pageX}px`);
-    document.body.style.setProperty("--mouseY", `${e.pageY}px`);
+  // Handles trailed positioning of the cursor
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+  let speed = 0.07;
+
+  document.addEventListener("mousemove", function (event) {
+    mouseX = event.pageX;
+    mouseY = event.pageY;
   });
 
   contactLink!.addEventListener("mouseover", () => {
@@ -50,4 +59,18 @@ export default function initCursor() {
     document.body.style.setProperty("--cursor-size", `${cursorSize}px`);
     window.requestAnimationFrame(shrinkCursor);
   }
+
+  function animateCursorPosition() {
+    let distX = mouseX - cursorX;
+    let distY = mouseY - cursorY;
+
+    cursorX = cursorX + distX * speed;
+    cursorY = cursorY + distY * speed;
+
+    document.body.style.setProperty("--cursorX", `${cursorX}px`);
+    document.body.style.setProperty("--cursorY", `${cursorY}px`);
+
+    requestAnimationFrame(animateCursorPosition);
+  }
+  animateCursorPosition();
 }
