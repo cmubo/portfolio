@@ -5,7 +5,7 @@ import "../styles/global.css";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
   <>
     <head>
       <meta charset="UTF-8" />
@@ -16,6 +16,25 @@ import "../styles/global.css";
         name="description"
         content="Callum Mubery is a dedicated frontend developer specializing in React.js, TypeScript, and Node.js. Delivering modern, high-performance web solutions."
       />
+
+      <meta
+        property="og:title"
+        content="Callum Mubery | Frontend Development and Engineering"
+      />
+      <meta property="og:type" content="website" />
+      <meta
+        property="og:description"
+        content="Callum Mubery is a dedicated frontend developer specializing in React.js, TypeScript, and Node.js. Delivering modern, high-performance web solutions."
+      />
+      <meta property="og:site_name" content="Callum Mubery" />
+      <meta property="og:locale" content="en_GB" />
+      <meta
+        property="og:image"
+        content="https://mubery.com/images/profile/scary-parrot.png"
+      />
+      <meta property="og:url" content="https://mubery.com" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
 
       <script type="application/ld+json">
         {
@@ -106,7 +125,7 @@ import "../styles/global.css";
 
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    const lenis = new Lenis();
+    const lenis = new Lenis({});
     window.lenis = lenis;
 
     // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
@@ -128,5 +147,6 @@ import "../styles/global.css";
     initRevealCharactersInstances();
     initCursor();
   </script>
+
 
 </html>
