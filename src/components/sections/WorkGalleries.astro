@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import GalleryModal from "../GalleryModal.astro";
 import tenatImages from "../images/tenat";
 import workpalImages from "../images/workpal";
+import fuelCalcImages from "../images/fuel-calc";
 ---
 
 <div>
@@ -16,6 +17,14 @@ import workpalImages from "../images/workpal";
   <GalleryModal id="workpal">
     {
       workpalImages.map((image) => (
+        <Image src={image.image} alt={image.alt} class="work-gallery__image" />
+      ))
+    }
+  </GalleryModal>
+
+  <GalleryModal id="fuelCalc">
+    {
+      fuelCalcImages.map((image) => (
         <Image src={image.image} alt={image.alt} class="work-gallery__image" />
       ))
     }
