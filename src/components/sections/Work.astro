@@ -5,6 +5,7 @@ import ArrowUpRight from "../icons/ArrowUpRight.astro";
 import tenatSVG from "../../assets/images/tenat/tenat-logo.svg";
 import workpalSVG from "../../assets/images/workpal/workpal-logo.svg";
 import goodshipSVG from "../../assets/images/goodship/goodship-logo.svg";
+import fuelCalcSVG from "../../assets/images/fuel-calc/fuel-calc-icon.svg";
 
 const workItems = [
   {
@@ -35,8 +36,20 @@ const workItems = [
       "GoodShip* is a collaboration agency that offers comprehensive support for our clients and partners. I worked along side Gavin at goodship to build out the site within webflow and also assisted with the design.",
     bgColour: "#FCF2E7",
     logo: goodshipSVG,
-    hasImageGalery: false,
+    hasImageGallery: false,
     link: "https://www.goodship.agency/",
+  },
+  {
+    modalId: "fuelCalc",
+    title: "Fuel Calculator App",
+    tags: ["React Native", "SQLite"],
+    description:
+      "This is a personal project designed to help me track costs on my frequent long journeys. It's a simple tool: create a journey, get an instant cost estimate, and save it directly on your device. There are no ads, analytics, accounts, or external storage. Currently, it's an Android-only application; an iOS version isn't available, and while it's not on app stores, you can download the APK via the arrow in the top right corner.",
+    bgColour: "#0f172a",
+    logo: fuelCalcSVG,
+    hasImageGallery: true,
+    link: "https://github.com/cmubo/fuel-calc?tab=readme-ov-file",
+    overwriteImageClass: "w-full max-w-[125px]"
   },
 ];
 ---
@@ -54,7 +67,7 @@ const workItems = [
               src={item.logo}
               alt={`${item.title} logo`}
               role="presentation"
-              class="w-full max-w-[200px]"
+              class={`${item.overwriteImageClass ? item.overwriteImageClass : "w-full max-w-[200px]"}`}
             />
             {item.hasImageGallery ? (
               <button
